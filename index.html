@@ -123,7 +123,7 @@
 <h2 id="壁纸页选择"><a href="#壁纸页选择" class="headerlink" title="壁纸页选择"></a>壁纸页选择</h2><p>根据网页URL的特征<code>http://konachan.net/post?page=</code>，不难看出，只要在<code>page=</code>后面跟页码，即可完成页面跳转。</p>
 <h2 id="页面元素层级"><a href="#页面元素层级" class="headerlink" title="页面元素层级"></a>页面元素层级</h2><p><img src="../images/%E5%A3%81%E7%BA%B8GET%E9%85%B1_2.png" alt="element_hierarchy_screenshot"><br>很明显可以看出壁纸展示区位于<code>&lt;ul id=&quot;post-list-posts&gt;...&lt;/ul&gt;</code>标签下。每一个缩略图对应一对<code>&lt;li&gt;&lt;/li&gt;</code>标签。</p>
 <p>定位了要探索的主要内容的区域后。下一步，是从缩略图标签中提取出原图所对应的url，即超链接。<br><img src="../images/%E5%A3%81%E7%BA%B8GET%E9%85%B1_3.png" alt="picture_url"><br>根据上述截图，可以看出，图中最下面的<code>&lt;a&gt;&lt;/a&gt;</code>标签中的url是我们需要的。</p>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>为了节省时间（偷懒），选择Python3 + re + bs4作为实现工具，考虑使用最不用脑子的方式————使用单线程和无界面的方式爬取文件。具体过程不做详细解释, 源码如下。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>为了节省时间（偷懒），选择Python3 + re + requests + bs4作为实现工具，考虑使用最不用脑子的方式————使用单线程和无界面的方式爬取文件。具体过程不做详细解释, 源码如下。</p>
 <pre><code>#!/usr/local/bin/python3
 &apos;&apos;&apos;
 &apos; This is spider and batch script which is used for downloading
@@ -328,17 +328,17 @@ if __name__ == &apos;__main__&apos;:
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/信号处理/">信号处理<span>1</span></a></li>
-		
-			<li><a href="/tags/阵列信号处理/">阵列信号处理<span>1</span></a></li>
-		
-			<li><a href="/tags/简介/">简介<span>1</span></a></li>
-		
-			<li><a href="/tags/技术向/">技术向<span>1</span></a></li>
-		
 			<li><a href="/tags/憨憨爬虫/">憨憨爬虫<span>1</span></a></li>
 		
 			<li><a href="/tags/日常向/">日常向<span>1</span></a></li>
+		
+			<li><a href="/tags/简介/">简介<span>1</span></a></li>
+		
+			<li><a href="/tags/阵列信号处理/">阵列信号处理<span>1</span></a></li>
+		
+			<li><a href="/tags/信号处理/">信号处理<span>1</span></a></li>
+		
+			<li><a href="/tags/技术向/">技术向<span>1</span></a></li>
 		
 		 
 		</ul>
