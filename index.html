@@ -23,7 +23,7 @@
 
   
   
-    <link href="/1.png" rel="icon">
+    <link href="/favicon.png" rel="icon">
   
   
   <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
@@ -97,6 +97,113 @@
 		<div class="mypage">
 		
 		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->
+<div class="row">
+	<div class="col-md-8">
+		<h3 class="title">
+			<a href="/2019/08/05/壁纸GET酱/" >壁纸GET酱</a>
+		</h3>
+		</div>
+	<div class="col-md-4">
+		<div class="date">post @ 2019-08-05  </div>
+		</div>
+	</div>
+	
+
+
+			<div class="entry">
+  <div class="row">
+	
+	
+		<h1 id="简易壁纸批量获取脚本"><a href="#简易壁纸批量获取脚本" class="headerlink" title="简易壁纸批量获取脚本"></a>简易壁纸批量获取脚本</h1><p>一次偶然的机会，我摸到了一个虽然很小，但是有很多动漫壁纸资源的网站并mark了下来，成为了我电脑桌面的主要获取来源。所以，这次的爬虫的目标就是爬取这个网站选取页上的所有缩略图的原图。考虑到此次实现的内容还挺简单的，算是一个日常向的东西。<a href="http://konachan.net/post" target="_blank" rel="noopener">-&gt;壁纸来源&lt;-</a></p>
+<h1 id="爬取思路"><a href="#爬取思路" class="headerlink" title="爬取思路"></a>爬取思路</h1><p>考虑到爬取的内容为上文网站中的静态资源。因此，爬取的关键在于在网页源码中找到该类型资源在网站布局中的逻辑、规律和所处的标签层级。<img src="../images/%E5%A3%81%E7%BA%B8GET%E9%85%B1_1.png" alt="website_screenshot"></p>
+<h2 id="壁纸页选择"><a href="#壁纸页选择" class="headerlink" title="壁纸页选择"></a>壁纸页选择</h2><p>根据网页URL的特征<code>http://konachan.net/post?page=</code>，不难看出，只要在<code>page=</code>后面跟页码，即可完成页面跳转。</p>
+<h2 id="页面元素层级"><a href="#页面元素层级" class="headerlink" title="页面元素层级"></a>页面元素层级</h2><p><img src="../images/%E5%A3%81%E7%BA%B8GET%E9%85%B1_2.png" alt="element_hierarchy_screenshot"><br>很明显可以看出壁纸展示区位于<code>&lt;ul id=&quot;post-list-posts&gt;...&lt;/ul&gt;</code>标签下。每一个缩略图对应一对<code>&lt;li&gt;&lt;/li&gt;</code>标签。</p>
+<p>定位了要探索的主要内容的区域后。下一步，是从缩略图标签中提取出原图所对应的url，即超链接。<br><img src="../images/%E5%A3%81%E7%BA%B8GET%E9%85%B1_3.png" alt="picture_url"><br>根据上述截图，可以看出，图中最下面的<code>&lt;a&gt;&lt;/a&gt;</code>标签中的url是我们需要的。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>为了节省时间（偷懒），选择Python3 + re + bs4作为实现工具，考虑使用最不用脑子的方式————使用单线程和无界面的方式爬取文件。具体过程不做详细解释, 源码如下。</p>
+<pre><code>#!/usr/local/bin/python3
+&apos;&apos;&apos;
+&apos; This is spider and batch script which is used for downloading
+&apos; wallpapers from particular wallpaper website.
+&apos;&apos;&apos;
+import os, sys
+import requests
+from bs4 import BeautifulSoup
+from bs4.element import *
+import re
+
+DIR = &apos;./picture/&apos;
+
+def process(page, file_ctr):
+    if file_ctr == None:
+        file_ctr = 1
+    # load html src
+    html = requests.get(&apos;http://konachan.net/post?page=&apos; + str(page))
+    html.encoding = html.apparent_encoding
+    html_src = html.text
+
+    # parse html element
+    soup = BeautifulSoup(html_src, &apos;html.parser&apos;)
+    for i in soup.find_all(&quot;ul&quot;, id=&quot;post-list-posts&quot;):
+        for j in i.find_all(&quot;li&quot;):
+            k = j.find(&quot;a&quot;, class_=re.compile(&quot;directlink \w*img&quot;))
+            if k != None:
+                img_url = k[&quot;href&quot;]
+                print(img_url)
+                suffix = re.search(&quot;\.\w{3,5}$&quot;, img_url)
+                img_response = requests.get(img_url)
+                fd = open(DIR + str(file_ctr) + suffix.group(), &apos;wb&apos;)
+                if fd.writable():
+                    fd.write(img_response.content)
+                fd.close()
+                file_ctr = file_ctr + 1
+
+
+def main():
+    # use cmdline parameters
+    num_of_params = len(sys.argv)
+    start = 1
+    end = 1
+    if num_of_params == 1:
+        print(&quot;wrong parameters, append &apos;-h&apos; for help&quot;)
+        return -1
+    elif num_of_params == 2:
+        if sys.argv[1] == &apos;-h&apos;:
+            print(&quot;please use &apos;./main.py &lt;startpage&gt; &lt;endpage&gt;&apos; cmd.&quot;)
+            return -1
+        else:
+            print(&quot;wrong parameters, append &apos;-h&apos; for help&quot;)
+            return -1
+    elif num_of_params == 3:
+        try:
+            start = int(sys.argv[1])
+            end = int(sys.argv[2])
+        except Exception as e:
+            print(&quot;wrong parameters, append &apos;-h&apos; for help&quot;)
+            return -1
+    else:
+        print(&quot;wrong parameters, append &apos;-h&apos; for help&quot;)
+        return -1
+
+    ctr = 0
+    # count file number in picture directory
+    for i in os.listdir(DIR):
+        ctr = ctr + 1
+    for i in range(start, end + 1):
+        process(i, ctr)
+    return 0
+
+
+if __name__ == &apos;__main__&apos;:
+    main()</code></pre>
+	
+	</div>
+  <a type="button" href="/2019/08/05/壁纸GET酱/#more" class="btn btn-default more">Read More</a>
+</div>
+
 		
 			
 	
@@ -221,13 +328,17 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/简介/">简介<span>1</span></a></li>
+			<li><a href="/tags/信号处理/">信号处理<span>1</span></a></li>
 		
 			<li><a href="/tags/阵列信号处理/">阵列信号处理<span>1</span></a></li>
 		
-			<li><a href="/tags/信号处理/">信号处理<span>1</span></a></li>
+			<li><a href="/tags/简介/">简介<span>1</span></a></li>
 		
 			<li><a href="/tags/技术向/">技术向<span>1</span></a></li>
+		
+			<li><a href="/tags/憨憨爬虫/">憨憨爬虫<span>1</span></a></li>
+		
+			<li><a href="/tags/日常向/">日常向<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -239,6 +350,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2019/08/05/壁纸GET酱/" ><i class="fa fa-file-o"></i>壁纸GET酱</a>
+      </li>
     
       <li>
         <a href="/2019/06/26/关于毕业设计-TDOA/" ><i class="fa fa-file-o"></i>关于毕业设计 TDOA</a>
