@@ -166,15 +166,15 @@
 		
 			<li><a href="/tags/技术向/">技术向<span>1</span></a></li>
 		
-			<li><a href="/tags/C-小知识/">C++小知识<span>1</span></a></li>
+			<li><a href="/tags/信号处理/">信号处理<span>1</span></a></li>
 		
 			<li><a href="/tags/日常向/">日常向<span>1</span></a></li>
 		
-			<li><a href="/tags/查缺补漏/">查缺补漏<span>1</span></a></li>
-		
 			<li><a href="/tags/简介/">简介<span>1</span></a></li>
 		
-			<li><a href="/tags/信号处理/">信号处理<span>1</span></a></li>
+			<li><a href="/tags/查缺补漏/">查缺补漏<span>1</span></a></li>
+		
+			<li><a href="/tags/C-小知识/">C++小知识<span>1</span></a></li>
 		
 			<li><a href="/tags/憨憨爬虫/">憨憨爬虫<span>1</span></a></li>
 		
@@ -267,12 +267,13 @@
 
 
   <!-- Live2D 感谢 https://github.com/galnetwen 提供的实现方法和源码 -->
+  <!--        感谢 https://github.com/lychs1998 提供的Live2D模型 -->
   <!-- CSS controled by myself -->
-  <div id="ctrlBt" style="position:fixed; bottom:250px; right:50px;" onClick="live2dShowControl();">隐藏</div>
+  <div id="ctrlBt" style="position:fixed; bottom:400px; right:50px;" onClick="live2dShowControl();">隐藏</div>
   <!-- live2dmodule controled by live2d.css -->
   <div id="live2dmodule">
     <div class="message" style="opacity:0"></div>
-    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    <canvas id="live2d" width="300" height="420" class="live2d"></canvas>
   </div>
   <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
   <script type="text/javascript">
@@ -280,9 +281,11 @@
       var home_Path = 'http://hellozhy.github.io'
   </script>
   <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+  <!-- useful for another model
   <script type="text/javascript" src="/live2d/js/message.js"></script>
+  -->
   <script type="text/javascript">
-      loadlive2d("live2d", "/live2d/model/tia/model.json");
+      loadlive2d("live2d", "/live2d/model/Terisa/model.json");
       function live2dShowControl(){
         if(document.getElementById("live2dmodule").style.display == "none"){
           document.getElementById("live2dmodule").style.display = "block";
