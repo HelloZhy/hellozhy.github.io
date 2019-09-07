@@ -1,438 +1,249 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="cache-control" content="no-cache">
-  <meta http-equiv="expires" content="0">
-  
-  <title>HelloZhy Blog</title>
-  <meta name="author" content="redfish">
-  
-  <meta name="description" content="个人博客（日常向）">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  
-  <meta property="og:site_name" content="HelloZhy Blog">
-
-  
-    <meta property="og:image" content>
-  
-
-  
-  
-    <link href="/favicon.png" rel="icon">
-  
-  
-  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  <script src="/js/jquery-2.0.3.min.js"></script>
-
-  <!-- analytics -->
-  
-
-
-
-  <!-- Live2D Include -->
-  <link rel="stylesheet" href="/live2d/css/live2d.css" media="screen" type="text/css">
-
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="个人博客（日常向）">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HelloZhy Blog">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="HelloZhy Blog">
+<meta property="og:description" content="个人博客（日常向）">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HelloZhy Blog">
+<meta name="twitter:description" content="个人博客（日常向）">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>HelloZhy Blog</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
-</html>
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-	  <a class="navbar-brand" href="/">HelloZhy Blog</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class=""></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class=""></i>About
-			</a>
-		  </li>
-		  
-		</ul>
-      </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
 
-  <div class="container">
-  	<div class="content">
-    	 <div class="page-header logo">
-  <h1>HelloZhy Blog<span class="blink-fast">∎</span></h1>
-</div>
-
-<div class="row page">
-
-	
-	<div class="col-md-9">
-	
-
-		<div class="slogan">
-
-
-		Thinking twice, coding once.
-
-</div>    
-
-		<div id="top_search"></div>
-		<div class="mypage">
-		
-		<!-- title and entry -->
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2019/08/24/CPP获取成员函数指针/" >C++ 获取成员函数指针</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2019-08-24  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="C-获取成员函数指针"><a href="#C-获取成员函数指针" class="headerlink" title="C++ 获取成员函数指针"></a>C++ 获取成员函数指针</h1><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>我在使用基于Arduino的ESP32框架进行开发时，想要重新将其中的Wi-Fi组件中的一些功能与UDP的一些功能重新封装成一个类。发现原本的WiFi启动流程中需要我给出回调函数，而我的回调函数是写在类中的非静态成员函数，之前没有碰过，也不知道是否可行行得通，故开始考虑是否有方法可以将类中的成员函数作为其他类的回调函数。</p>
-<h2 id="C-中的静态成员和非静态成员函数"><a href="#C-中的静态成员和非静态成员函数" class="headerlink" title="C++中的静态成员和非静态成员函数"></a>C++中的静态成员和非静态成员函数</h2><ul>
-<li>静态成员函数：在类的声明中以<code>static</code>开头的函数，表明所有该类的类对象共享该成员函数，不需要传入<code>this</code>指针，该函数只可访问类中的其他静态成员，可以使用类名和域操作符直接调用。</li>
-<li>非静态成员函数：相比静态成员函数，在函数调用阶段会自动传入<code>this</code>指针，为类对象单独所有，而非在类中共享。<h2 id="C-静态成员函数调用"><a href="#C-静态成员函数调用" class="headerlink" title="C++静态成员函数调用"></a>C++静态成员函数调用</h2>下面展示C++静态成员函数的调用方法demo<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//回调函数，其中fp是函数指针</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">callback</span><span class="params">(<span class="keyword">void</span>(*fp)(<span class="keyword">void</span>))</span></span>&#123;</span><br><span class="line">        <span class="comment">//函数调用过程</span></span><br><span class="line">        (*fp)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> A::foo()&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"foo running"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    a.callback(A::foo)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>静态函数的回调过程与普通函数的没有什么太多区别，多了类限定的域操作符。</p>
-<h2 id="C-非静态成员函数的调用过程"><a href="#C-非静态成员函数的调用过程" class="headerlink" title="C++ 非静态成员函数的调用过程"></a>C++ 非静态成员函数的调用过程</h2><p>下面展示C++非静态成员函数的调用方法demo</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">void</span>(A::*pf)(), A* po)</span></span>&#123;</span><br><span class="line">        <span class="comment">//po为类对象地址（this）</span></span><br><span class="line">        (po-&gt;*pf)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"f1 running"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//typedef 一个A的成员函数指针, 类型为P</span></span><br><span class="line">    <span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(A::*P)</span><span class="params">()</span></span>;</span><br><span class="line">    A a;</span><br><span class="line">    <span class="comment">//获取类中f1成员函数的地址</span></span><br><span class="line">    P _p = (P)&amp;A::f1;</span><br><span class="line">    <span class="comment">//将成员函数的地址与调用该函数的类对象地址传入</span></span><br><span class="line">    a.foo(_p, &amp;a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>有以下几点需要注意:</p>
-<ul>
-<li>一个非静态成员函数指针的声明需要带上类限定。</li>
-<li>使用非静态成员函数指针调用该函数需要传入指定类对象的类对象地址，即<code>this</code>指针。</li>
-</ul>
-
-	
-	</div>
-  <a type="button" href="/2019/08/24/CPP获取成员函数指针/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2019/08/05/壁纸GET酱/" >壁纸GET酱</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2019-08-05  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="简易壁纸批量获取脚本"><a href="#简易壁纸批量获取脚本" class="headerlink" title="简易壁纸批量获取脚本"></a>简易壁纸批量获取脚本</h1><p>一次偶然的机会，我摸到了一个虽然很小，但是有很多动漫壁纸资源的网站并mark了下来，成为了我电脑桌面的主要获取来源。所以，这次的爬虫的目标就是爬取这个网站选取页上的所有缩略图的原图。考虑到此次实现的内容还挺简单的，算是一个日常向的东西。<a href="http://konachan.net/post" target="_blank" rel="noopener">-&gt;壁纸来源&lt;-</a></p>
-<h1 id="爬取思路"><a href="#爬取思路" class="headerlink" title="爬取思路"></a>爬取思路</h1><p>考虑到爬取的内容为上文网站中的静态资源。因此，爬取的关键在于在网页源码中找到该类型资源在网站布局中的逻辑、规律和所处的标签层级。<img src="/2019/08/05/壁纸GET酱/%E5%A3%81%E7%BA%B8GET%E9%85%B1_1.png" alt="website_screenshot"></p>
-<h2 id="壁纸页选择"><a href="#壁纸页选择" class="headerlink" title="壁纸页选择"></a>壁纸页选择</h2><p>根据网页URL的特征<code>http://konachan.net/post?page=</code>，不难看出，只要在<code>page=</code>后面跟页码，即可完成页面跳转。</p>
-<h2 id="页面元素层级"><a href="#页面元素层级" class="headerlink" title="页面元素层级"></a>页面元素层级</h2><p><img src="/2019/08/05/壁纸GET酱/%E5%A3%81%E7%BA%B8GET%E9%85%B1_2.png" alt="element_hierarchy_screenshot"><br>很明显可以看出壁纸展示区位于<code>&lt;ul id=&quot;post-list-posts&gt;...&lt;/ul&gt;</code>标签下。每一个缩略图对应一对<code>&lt;li&gt;&lt;/li&gt;</code>标签。</p>
-<p>定位了要探索的主要内容的区域后。下一步，是从缩略图标签中提取出原图所对应的url，即超链接。<br><img src="/2019/08/05/壁纸GET酱/%E5%A3%81%E7%BA%B8GET%E9%85%B1_3.png" alt="picture_url"><br>根据上述截图，可以看出，图中最下面的<code>&lt;a&gt;&lt;/a&gt;</code>标签中的url是我们需要的。</p>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>为了节省时间（偷懒），选择Python3 + re + requests + bs4作为实现工具，考虑使用最不用脑子的方式————使用单线程和无界面的方式爬取文件。具体过程不做详细解释, 源码如下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/bin/python3</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">' This is spider and batch script which is used for downloading</span></span><br><span class="line"><span class="string">' wallpapers from particular wallpaper website.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> bs4.element <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">DIR = <span class="string">'./picture/'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process</span><span class="params">(page, file_ctr)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> file_ctr == <span class="literal">None</span>:</span><br><span class="line">        file_ctr = <span class="number">1</span></span><br><span class="line">    <span class="comment"># load html src</span></span><br><span class="line">    html = requests.get(<span class="string">'http://konachan.net/post?page='</span> + str(page))</span><br><span class="line">    html.encoding = html.apparent_encoding</span><br><span class="line">    html_src = html.text</span><br><span class="line"></span><br><span class="line">    <span class="comment"># parse html element</span></span><br><span class="line">    soup = BeautifulSoup(html_src, <span class="string">'html.parser'</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> soup.find_all(<span class="string">"ul"</span>, id=<span class="string">"post-list-posts"</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> i.find_all(<span class="string">"li"</span>):</span><br><span class="line">            k = j.find(<span class="string">"a"</span>, class_=re.compile(<span class="string">"directlink \w*img"</span>))</span><br><span class="line">            <span class="keyword">if</span> k != <span class="literal">None</span>:</span><br><span class="line">                img_url = k[<span class="string">"href"</span>]</span><br><span class="line">                print(img_url)</span><br><span class="line">                suffix = re.search(<span class="string">"\.\w&#123;3,5&#125;$"</span>, img_url)</span><br><span class="line">                img_response = requests.get(img_url)</span><br><span class="line">                fd = open(DIR + str(file_ctr) + suffix.group(), <span class="string">'wb'</span>)</span><br><span class="line">                <span class="keyword">if</span> fd.writable():</span><br><span class="line">                    fd.write(img_response.content)</span><br><span class="line">                fd.close()</span><br><span class="line">                file_ctr = file_ctr + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># use cmdline parameters</span></span><br><span class="line">    num_of_params = len(sys.argv)</span><br><span class="line">    start = <span class="number">1</span></span><br><span class="line">    end = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> num_of_params == <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">elif</span> num_of_params == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">if</span> sys.argv[<span class="number">1</span>] == <span class="string">'-h'</span>:</span><br><span class="line">            print(<span class="string">"please use './main.py &lt;startpage&gt; &lt;endpage&gt;' cmd."</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">elif</span> num_of_params == <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            start = int(sys.argv[<span class="number">1</span>])</span><br><span class="line">            end = int(sys.argv[<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    ctr = <span class="number">0</span></span><br><span class="line">    <span class="comment"># count file number in picture directory</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(DIR):</span><br><span class="line">        ctr = ctr + <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start, end + <span class="number">1</span>):</span><br><span class="line">        process(i, ctr)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-
-	
-	</div>
-  <a type="button" href="/2019/08/05/壁纸GET酱/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2019/06/26/关于毕业设计-TDOA/" >关于毕业设计 TDOA</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2019-06-26  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="TDOA估计"><a href="#TDOA估计" class="headerlink" title="TDOA估计"></a>TDOA估计</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>我的毕业设计项目是一个基于到达时延差估计的雷声定位软件。从原理上就可以看出该软件的定位计算过程依赖于多个通道的时延差估计值。至于这些估计值如何计算就是下面要介绍的内容了。</p>
-<h2 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h2><p>TDOA估计算法是一种广泛运用于传感器（麦克风）阵列信号处理中的常用算法。其目的是从多个通道的传感器数据流中辨识相似信号，从而做差并处理得到声源到多个传感器的时间差以及距离差。常用的算法有<strong>广义互相关法</strong>、<strong>自适应特征值分解法</strong>等。</p>
-<h2 id="广义互相关法"><a href="#广义互相关法" class="headerlink" title="广义互相关法"></a>广义互相关法</h2><p>由于我使用的传感器阵元数量较少，因此采用实现起来更为简单方便计算量小的<strong>广义互相关法</strong>。<br>广义互相关算法建立在信号的互相关函数计算的基础上，以信号间的相关性为依据并进行加权处理，即可得到较好的时延估计效果。这里我所使用的是其中的<strong>互功率谱相位法</strong>。假设两路信号为x1， x2，处理过程分为以下几步，</p>
-<ol>
-<li>对x1，x2加窗。（因为雷声本身没有优势频谱，因此考虑窗函数选取对信号的影响）</li>
-<li>对信号进行快速傅里叶变换，记为X1，X2。</li>
-<li>计算互功率谱，并乘上加权系数1/|X1·X2|。</li>
-<li>对3的计算结果进行快速傅里叶反变换，记为xcorr。</li>
-<li>xcorr最大值的横坐标即时延差估计的结果，最大值为两信号间的相关度。</li>
-</ol>
-<h2 id="Matlab实现"><a href="#Matlab实现" class="headerlink" title="Matlab实现"></a>Matlab实现</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% input:</span></span><br><span class="line"><span class="comment">%     xref: referrence signal</span></span><br><span class="line"><span class="comment">%     x: other signals</span></span><br><span class="line"><span class="comment">% ouput:</span></span><br><span class="line"><span class="comment">%     tau_n: time delay</span></span><br><span class="line"><span class="comment">%     valmax: relative level</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ tau_n, valmax ]</span> = <span class="title">gcc</span><span class="params">( xref, x )</span></span></span><br><span class="line">    len = <span class="built_in">length</span>(xref);</span><br><span class="line">    N = <span class="number">2</span> * <span class="built_in">nextpow2</span>(len);</span><br><span class="line">    Xref = fft(xref);</span><br><span class="line">    X = fft(x);</span><br><span class="line">    XCORR = <span class="built_in">zeros</span>(N, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>: N</span><br><span class="line">        XCORR(<span class="built_in">i</span>) = Xref(<span class="built_in">i</span>)' * X(<span class="built_in">i</span>) / <span class="built_in">abs</span>(Xref(<span class="built_in">i</span>)' * X(<span class="built_in">i</span>));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    iN = <span class="number">2</span> * len - <span class="number">1</span>;</span><br><span class="line">    xcorr = <span class="built_in">real</span>(ifft(XCORR, iN));</span><br><span class="line">    </span><br><span class="line">    argmax = <span class="number">1</span>;</span><br><span class="line">    valmax = xcorr(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>: iN</span><br><span class="line">        <span class="keyword">if</span> xcorr(<span class="built_in">i</span>) &gt; valmax</span><br><span class="line">            argmax = <span class="built_in">i</span>;</span><br><span class="line">            valmax = xcorr(<span class="built_in">i</span>);</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> argmax &gt; <span class="built_in">fix</span>(iN / <span class="number">2</span>)</span><br><span class="line">        tau_n = -(len - <span class="built_in">fix</span>(argmax * len / iN));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        tau_n = <span class="built_in">fix</span>(argmax * len / iN);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-	
-	</div>
-  <a type="button" href="/2019/06/26/关于毕业设计-TDOA/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-<div class="row">
-	<div class="col-md-8">
-		<h3 class="title">
-			<a href="/2019/06/26/初始化/" >初始化</a>
-		</h3>
-		</div>
-	<div class="col-md-4">
-		<div class="date">post @ 2019-06-26  </div>
-		</div>
-	</div>
-	
-
-
-			<div class="entry">
-  <div class="row">
-	
-	
-		<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>大学四年的生活结束了，即将开始我的码农生活。希望通过这个个人博客记录一些生活日常、一些写程序中遇到的坑和一些代码学习过程与体会。</p>
-<h1 id="技能树"><a href="#技能树" class="headerlink" title="技能树"></a>技能树</h1><p>在接下来的日子里，我希望在能以下几个方面学习和拓展我的知识与能力。我会利用这个Blog更新我的各个方向的学习感悟。</p>
-<h3 id="语言-工具"><a href="#语言-工具" class="headerlink" title="语言/工具"></a>语言/工具</h3><ul>
-<li>C/C++</li>
-<li>Python</li>
-<li>Verilog</li>
-<li>Matlab</li>
-</ul>
-<h3 id="信号处理-amp-嵌入式"><a href="#信号处理-amp-嵌入式" class="headerlink" title="信号处理&amp;嵌入式"></a>信号处理&amp;嵌入式</h3><ul>
-<li>数字信号处理</li>
-<li>图像信号处理</li>
-<li>单片机驱动</li>
-<li>FPGA</li>
-</ul>
-<h3 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h3><ul>
-<li>Linux</li>
-</ul>
-
-	
-	</div>
-  <a type="button" href="/2019/06/26/初始化/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-
-		</div>
-
-		<!-- pagination -->
-		<div>
-  		<center>
-		<div class="pagination">
-
-   
-</div>
-
-  		</center>
-		</div>
-
-		
-		
-	</div> <!-- col-md-9 -->
-
-	
-		<div class="col-md-3">
-	<div id="sidebar">
-	
-			
-  <div id="site_search">
-   <div class="form-group">
-    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
-   </div>  
-  <div id="local-search-result"></div>
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    
+      <div id="logo" style="background-image: url(/images/logo.png);"></div>
+    
+  
+    <div id="title">
+      <h1>HelloZhy Blog</h1>
+    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/">Home</a></li>
+       
+        <li><a href="/about/">About</a></li>
+       
+        <li><a href="/archives/">Writing</a></li>
+      
+    </ul>
   </div>
+</header>
 
+        
+        <section id="about">
+  
+    <p>个人博客（日常向）</p>
 
-		
-			
-		
-			
-	<div class="widget">
-		<h4>Tag Cloud</h4>
-		<ul class="tag_box inline list-unstyled">		
-		
-			<li><a href="/tags/技术向/">技术向<span>1</span></a></li>
-		
-			<li><a href="/tags/C-小知识/">C++小知识<span>1</span></a></li>
-		
-			<li><a href="/tags/阵列信号处理/">阵列信号处理<span>1</span></a></li>
-		
-			<li><a href="/tags/憨憨爬虫/">憨憨爬虫<span>1</span></a></li>
-		
-			<li><a href="/tags/信号处理/">信号处理<span>1</span></a></li>
-		
-			<li><a href="/tags/简介/">简介<span>1</span></a></li>
-		
-			<li><a href="/tags/查缺补漏/">查缺补漏<span>1</span></a></li>
-		
-			<li><a href="/tags/日常向/">日常向<span>1</span></a></li>
-		
-		 
-		</ul>
-	</div>
+  
+  
+    <p>
+      Find me on
+      
+      
+      
+        
+          <a class="icon" target="_blank" href="http://github.com/hellozhy/">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    ---> and 
+        
+      
+        
+          <a class="icon" target="_blank" href="mailto:15851894037@139.com">
+            <i class="fas fa-envelope"></i><!--
+      ---></a><!--
+      ---><!--
+    --->.
+        
+      
+    </p>
+  
+</section>
 
-
-		
-			
-<div class="widget">
-  <h4>Recent Posts</h4>
-  <ul class="entry list-unstyled">
+<section id="writing">
+  <span class="h1"><a href="/archives">Writing</a></span>
+  
+  <ul class="post-list">
     
-      <li>
-        <a href="/2019/08/24/CPP获取成员函数指针/" ><i class="fa fa-file-o"></i>C++ 获取成员函数指针</a>
+    
+      
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-08-24T09:29:39.000Z" itemprop="datePublished">2019-08-24</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2019/08/24/CPP获取成员函数指针/">C++ 获取成员函数指针</a>
+    
+
+
+</span>
       </li>
     
-      <li>
-        <a href="/2019/08/05/壁纸GET酱/" ><i class="fa fa-file-o"></i>壁纸GET酱</a>
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-08-05T11:43:34.000Z" itemprop="datePublished">2019-08-05</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2019/08/05/壁纸GET酱/">壁纸GET酱</a>
+    
+
+
+</span>
       </li>
     
-      <li>
-        <a href="/2019/06/26/关于毕业设计-TDOA/" ><i class="fa fa-file-o"></i>关于毕业设计 TDOA</a>
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-06-26T15:18:21.000Z" itemprop="datePublished">2019-06-26</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2019/06/26/关于毕业设计-TDOA/">关于毕业设计 TDOA</a>
+    
+
+
+</span>
       </li>
     
-      <li>
-        <a href="/2019/06/26/初始化/" ><i class="fa fa-file-o"></i>初始化</a>
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-06-26T08:27:44.000Z" itemprop="datePublished">2019-06-26</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2019/06/26/初始化/">初始化</a>
+    
+
+
+</span>
       </li>
     
   </ul>
-</div>
-
-		
-			
-<div class="widget">
-	<h4>Links</h4>
-	<ul class="blogroll list-unstyled">
-	
-		<li><i class="fa fa-github"></i><a href="https://github.com/HelloZhy/" title="My Github." target="_blank"]);">HelloZhy</a></li>
-	
-	</ul>
-</div>
+  
+</section>
 
 
-		
-	</div> <!-- sidebar -->
-</div> <!-- col-md-3 -->
 
-	
-	
-</div> <!-- row-fluid -->
-	</div>
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 redfish
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2019 redfish
-  
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a>,<a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>,<a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a> and <a href="http://getbootstrap.com/" target="_blank">BOOTSTRA.386</a>. 
-     <br> Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind.386</a>.    
-</p>
- </footer>
-</div> <!-- container-narrow -->
-  
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
-  
-<a id="gotop" href="#">   
-  <span>⬆︎TOP</span>
-</a>
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
 
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
+<!-- search -->
 
+<!-- Google Analytics -->
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+<!-- Baidu Analytics -->
 
+<!-- Disqus Comments -->
 
-
-
-  <!-- Live2D 感谢 https://github.com/galnetwen 提供的实现方法和源码 -->
-  <!--        感谢 https://github.com/lychs1998 提供的Live2D模型 -->
-  <!-- CSS controled by myself -->
-  <div id="ctrlBt" style="position:fixed; bottom:400px; right:50px;" onClick="live2dShowControl();">隐藏</div>
-  <!-- live2dmodule controled by live2d.css -->
-  <div id="live2dmodule">
-    <div class="message" style="opacity:0"></div>
-    <canvas id="live2d" width="300" height="420" class="live2d"></canvas>
-  </div>
-  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-  <script type="text/javascript">
-      var message_Path = '/live2d/'
-      var home_Path = 'http://hellozhy.github.io'
-  </script>
-  <script type="text/javascript" src="/live2d/js/live2d.js"></script>
-  <!-- it is needed for another model
-  <script type="text/javascript" src="/live2d/js/message.js"></script>
-  -->
-  <script type="text/javascript">
-      loadlive2d("live2d", "/live2d/model/Terisa/model.json");
-      function live2dShowControl(){
-        if(document.getElementById("live2dmodule").style.display == "none"){
-          document.getElementById("live2dmodule").style.display = "block";
-          document.getElementById("ctrlBt").textContent = "隐藏";
-        }else{
-          document.getElementById("live2dmodule").style.display = "none";
-          document.getElementById("ctrlBt").textContent = "显示";
-        }
-      }
-  </script>
 
 </body>
-   </html>
+</html>
