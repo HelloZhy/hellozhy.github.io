@@ -7,14 +7,14 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="起因我在使用基于Arduino的ESP32框架进行开发时，想要重新将其中的Wi-Fi组件中的一些功能与UDP的一些功能重新封装成一个类。发现原本的WiFi启动流程中需要我给出回调函数，而我的回调函数是写在类中的非静态成员函数，之前没有碰过，也不知道是否可行行得通，故开始考虑是否有方法可以将类中的成员函数作为其他类的回调函数。 C++中的静态成员和非静态成员函数 静态成员函数：在类的声明中以stat">
-<meta name="keywords" content="C++小知识,查缺补漏">
+<meta name="keywords" content="C++,查缺补漏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 获取成员函数指针">
 <meta property="og:url" content="http://yoursite.com/2019/08/24/CPP获取成员函数指针/index.html">
 <meta property="og:site_name" content="HelloZhy Blog">
 <meta property="og:description" content="起因我在使用基于Arduino的ESP32框架进行开发时，想要重新将其中的Wi-Fi组件中的一些功能与UDP的一些功能重新封装成一个类。发现原本的WiFi启动流程中需要我给出回调函数，而我的回调函数是写在类中的非静态成员函数，之前没有碰过，也不知道是否可行行得通，故开始考虑是否有方法可以将类中的成员函数作为其他类的回调函数。 C++中的静态成员和非静态成员函数 静态成员函数：在类的声明中以stat">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-07T02:14:38.589Z">
+<meta property="og:updated_time" content="2019-09-09T13:06:20.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ 获取成员函数指针">
 <meta name="twitter:description" content="起因我在使用基于Arduino的ESP32框架进行开发时，想要重新将其中的Wi-Fi组件中的一些功能与UDP的一些功能重新封装成一个类。发现原本的WiFi启动流程中需要我给出回调函数，而我的回调函数是写在类中的非静态成员函数，之前没有碰过，也不知道是否可行行得通，故开始考虑是否有方法可以将类中的成员函数作为其他类的回调函数。 C++中的静态成员和非静态成员函数 静态成员函数：在类的声明中以stat">
@@ -71,6 +71,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2019/09/09/Mandelbrot-Set/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2019/08/05/壁纸GET酱/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -125,7 +127,7 @@
       
         <time datetime="2019-08-24T09:29:39.000Z" itemprop="datePublished">2019-08-24</time>
         
-        (Updated: <time datetime="2019-09-07T02:14:38.589Z" itemprop="dateModified">2019-09-07</time>)
+        (Updated: <time datetime="2019-09-09T13:06:20.710Z" itemprop="dateModified">2019-09-09</time>)
         
       
     </div>
@@ -136,7 +138,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/C-小知识/">C++小知识</a>, <a class="tag-link" href="/tags/查缺补漏/">查缺补漏</a>
+        <a class="tag-link" href="/tags/C/">C++</a>, <a class="tag-link" href="/tags/查缺补漏/">查缺补漏</a>
     </div>
 
 
