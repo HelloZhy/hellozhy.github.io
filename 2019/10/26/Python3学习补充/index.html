@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="@classmethod, @staticmethod 装饰器相关上述的这两个东西是python3中的两个装饰器，从字面意思可以看出，它们的作用场合是面向对象的程序。  被@classmethod修饰的方法会成为一个类方法，而不是类对象的方法。它不接受类成员的self参量，但指定第一个接收参数为该类的类型cls。 被@staticmethod修饰的方法会成为一个静态方法。这种修饰同样会使得该方法成">
+<meta name="keywords" content="查缺补漏,Python3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3学习补充">
+<meta property="og:url" content="http://yoursite.com/2019/10/26/Python3学习补充/index.html">
+<meta property="og:site_name" content="HelloZhy Blog">
+<meta property="og:description" content="@classmethod, @staticmethod 装饰器相关上述的这两个东西是python3中的两个装饰器，从字面意思可以看出，它们的作用场合是面向对象的程序。  被@classmethod修饰的方法会成为一个类方法，而不是类对象的方法。它不接受类成员的self参量，但指定第一个接收参数为该类的类型cls。 被@staticmethod修饰的方法会成为一个静态方法。这种修饰同样会使得该方法成">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-26T03:20:37.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3学习补充">
+<meta name="twitter:description" content="@classmethod, @staticmethod 装饰器相关上述的这两个东西是python3中的两个装饰器，从字面意思可以看出，它们的作用场合是面向对象的程序。  被@classmethod修饰的方法会成为一个类方法，而不是类对象的方法。它不接受类成员的self参量，但指定第一个接收参数为该类的类型cls。 被@staticmethod修饰的方法会成为一个静态方法。这种修饰同样会使得该方法成">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Python3学习补充</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/10/13/壁纸GET酱-多线程/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/10/26/Python3学习补充/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/10/26/Python3学习补充/&text=Python3学习补充"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/10/26/Python3学习补充/&is_video=false&description=Python3学习补充"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python3学习补充&body=Check out this article: http://yoursite.com/2019/10/26/Python3学习补充/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/10/26/Python3学习补充/&name=Python3学习补充&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#classmethod-staticmethod-装饰器相关"><span class="toc-number">1.</span> <span class="toc-text">@classmethod, @staticmethod 装饰器相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Descriptor-描述器"><span class="toc-number">1.1.</span> <span class="toc-text">Descriptor 描述器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#partial-偏函数"><span class="toc-number">1.2.</span> <span class="toc-text">partial 偏函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释"><span class="toc-number">1.3.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new-以及type"><span class="toc-number">2.</span> <span class="toc-text">new()以及type()</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python3学习补充
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">HelloZhy Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-10-26T00:36:37.000Z" itemprop="datePublished">2019-10-26</time>
+        
+        (Updated: <time datetime="2019-10-26T03:20:37.884Z" itemprop="dateModified">2019-10-26</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Python3/">Python3</a>, <a class="tag-link" href="/tags/查缺补漏/">查缺补漏</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="classmethod-staticmethod-装饰器相关"><a href="#classmethod-staticmethod-装饰器相关" class="headerlink" title="@classmethod, @staticmethod 装饰器相关"></a>@classmethod, @staticmethod 装饰器相关</h2><p>上述的这两个东西是python3中的两个装饰器，从字面意思可以看出，它们的作用场合是面向对象的程序。</p>
+<ul>
+<li>被<code>@classmethod</code>修饰的方法会成为一个类方法，而不是类对象的方法。它不接受类成员的<code>self</code>参量，<strong>但指定第一个接收参数为该类的类型<code>cls</code></strong>。</li>
+<li>被<code>@staticmethod</code>修饰的方法会成为一个静态方法。这种修饰同样会使得该方法成为一个所属于类的方法，而不是一个类对象的方法。</li>
+</ul>
+<p>这两者的区别是，后者对传入参数没有要求，而前者规定第一个参数必须传入cls。</p>
+<p>虽然了解到如上的解释对于理解和使用上述的装饰器已经足够了，但是，既然两者都是装饰器，也就应该是通过python的语法本身可以实现的东西。于是我开始思考怎样才能通过python的语言本身构造这样的一种装饰器。</p>
+<p>对于<code>@staticmethod</code>而言，它的行为与python类中的静态函数的特性保持了一致。即，在方法传参的过程中，不会自带类对象所特有的<code>self</code>参数，该方法属于类所有。所以，这个装饰器不是我关注的重点。</p>
+<p>重点在于怎么去实现<code>@classmethod</code>这个装饰器。值得关注的点在于，这个装饰器所修饰的函数可以获取到这个方法所作用的类的类型参数<code>cls</code>。说明这个装饰器具有识别该方法所属类的能力。在网上查了下dalao对于这个装饰器的实现，<a href="https://www.cnblogs.com/keithtt/p/10224034.html" target="_blank" rel="noopener">来源</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassMethod</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">        self.func = func</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, owner)</span>:</span></span><br><span class="line">        <span class="comment"># 由于类方法需要传递cls作为第一个位置参数，这里使用偏函数固定cls为第一个位置参数，并返回函数</span></span><br><span class="line">        <span class="keyword">return</span> partial(self.func, owner)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Descriptor-描述器"><a href="#Descriptor-描述器" class="headerlink" title="Descriptor 描述器"></a>Descriptor 描述器</h3><p>因为在python入门的时候对这些魔法方法没有进行深入的了解，因此着重对上文代码中的<code>__get__</code>方法进行了学习。这个方法与python中的<strong>描述器</strong>知识是相关的。<strong>描述器</strong>是带有“绑定行为”的对象属性,它的属性访问已经被描述符协议中的方法覆盖了。<strong>描述器</strong>相关的方法有<code>__get__</code>,<code>__set__</code>,<code>__delete__</code></p>
+<ul>
+<li><code>__get__(self, instance, owner)</code>: instance-&gt;描述类或类成员实际拥有者的实例; owner-&gt;描述类或类成员实际拥有者的类型</li>
+<li><code>__set__(self, instance, value)</code>: instance-&gt;描述类或类成员实际拥有者的实例; value-&gt;值</li>
+<li><code>__delete__(self, instance)</code>: self-&gt;描述符类实例; instance-&gt;描述类或类成员实际拥有者的实例;</li>
+</ul>
+<p>在创建一个描述器的时候有一下几点注意事项,</p>
+<ol>
+<li>拥有上述方法的类，<strong>必须产生一个实例</strong>，并且这个实例是另外一个类的<strong>类属性</strong>。</li>
+<li>描述器赋值如果是通过类的属性方式赋值，而不是类的实例方式赋值，描述器失效。</li>
+</ol>
+<p>描述器一般用于数据的过滤以及装饰器<code>@classmethod</code>和<code>@staticmethod</code>（<strong>类方法也属于类属性，可以通过描述器进行修饰。描述器可以通过<code>instance</code>参数操作类对象成员，通过<code>owner</code>操作类成员</strong>）。</p>
+<h3 id="partial-偏函数"><a href="#partial-偏函数" class="headerlink" title="partial 偏函数"></a>partial 偏函数</h3><p>偏函数是python标准库中<code>functools</code>包中的工具函数，用于对函数进行部分参数的绑定，并将绑定后的函数返回。上文中的<code>partial(self.func, owner)</code>意思是将<code>self.func</code>函数的第一参数<code>self</code>用<code>owner</code>绑定，即指定操作该类方法的类实例为<code>owner</code>对象。</p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>在上述概念理解清楚以后，终于能够看懂上述代码了。经过装饰器的修饰，在<code>ClassMethod</code>类的<code>__init__</code>中，方法被传入。之后<code>ClassMethod</code>取而代之，作为描述器成为上层类的类成员。每次想要调用描述器的时候，<code>__get__</code>函数就会将绑定好<code>cls</code>的类方法<code>func</code>，返回给调用者使用。</p>
+<h2 id="new-以及type"><a href="#new-以及type" class="headerlink" title="new()以及type()"></a><strong>new</strong>()以及type()</h2><p>曾经我一直以为python中的<code>__init__</code>与其他语言中的构造函数的行为是等价的。但是现在我发现，我之前的理解是有问题的。在python中类对象的构造实际上是由<code>__new__</code>和<code>__init__</code>两个特殊函数共同构成的。其中前者负责内存的分配，后者完成类成员的初始化动作。</p>
+<p>对于<code>__init__</code>方法没有太多需要解释的地方，因为在python的面向对象中使用频率非常的高。但是对于<code>__new__</code>方法，出现的概率就没有这么高了。也是最近我接触到了python中单例模式的写法之后，我才认识到<code>__new__</code>方法的作用。</p>
+<p>这个方法是类方法，所以在方法传参是并不需要<code>self</code>参数来指定类对象。同时也是因为这个方法的作用是为类对象分配内存的，此时类对象还不存在，所以<code>self</code>此时并不一定存在。但是该方法需要接受一个<code>cls</code>参数来表明要构造的类对象的类型，即一个<code>class</code>的<code>type</code>。根据类型来构建这个类的实例。</p>
+<p>关于<code>type()</code>这个内建方法，我一直以为它的功能是返回某个对象的类型，后来我发现这个方法还具有构建对象的能力。<br>让我们来看一眼<code>type</code>的这种用法，<code>type(object_or_name, bases, dict)</code>。其中第一参数指定类型名，第二参数指定其继承自哪些类，第三参数用来绑定类成员以及成员方法。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#classmethod-staticmethod-装饰器相关"><span class="toc-number">1.</span> <span class="toc-text">@classmethod, @staticmethod 装饰器相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Descriptor-描述器"><span class="toc-number">1.1.</span> <span class="toc-text">Descriptor 描述器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#partial-偏函数"><span class="toc-number">1.2.</span> <span class="toc-text">partial 偏函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释"><span class="toc-number">1.3.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new-以及type"><span class="toc-number">2.</span> <span class="toc-text">new()以及type()</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/10/26/Python3学习补充/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/10/26/Python3学习补充/&text=Python3学习补充"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/10/26/Python3学习补充/&is_video=false&description=Python3学习补充"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python3学习补充&body=Check out this article: http://yoursite.com/2019/10/26/Python3学习补充/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/10/26/Python3学习补充/&title=Python3学习补充"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/10/26/Python3学习补充/&name=Python3学习补充&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 redfish
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
