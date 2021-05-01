@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Basic Operations int open(const char* path, int oflag, ...); int openat(int fd, const char* path, int oflag, ...); int close(int fd); ssize_t read(int fd, void* buf, size_t nbyte); ssize_t write(int f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unix System Programming -- (File IO Basic)">
+<meta property="og:url" content="http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/index.html">
+<meta property="og:site_name" content="HelloZhy Blog">
+<meta property="og:description" content="Basic Operations int open(const char* path, int oflag, ...); int openat(int fd, const char* path, int oflag, ...); int close(int fd); ssize_t read(int fd, void* buf, size_t nbyte); ssize_t write(int f">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2021-05-01T03:49:41.185Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Unix System Programming -- (File IO Basic)">
+<meta name="twitter:description" content="Basic Operations int open(const char* path, int oflag, ...); int openat(int fd, const char* path, int oflag, ...); int close(int fd); ssize_t read(int fd, void* buf, size_t nbyte); ssize_t write(int f">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Unix System Programming -- (File IO Basic)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/08/19/信号与系统感悟/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&text=Unix System Programming -- (File IO Basic)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&is_video=false&description=Unix System Programming -- (File IO Basic)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Unix System Programming -- (File IO Basic)&body=Check out this article: http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&name=Unix System Programming -- (File IO Basic)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Basic-Operations"><span class="toc-number">1.</span> <span class="toc-text">Basic Operations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Highlight-Points"><span class="toc-number">2.</span> <span class="toc-text">Highlight Points</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Practice"><span class="toc-number">3.</span> <span class="toc-text">Practice</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-simple-tee"><span class="toc-number">3.1.</span> <span class="toc-text">4_1 simple tee</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-simple-cp"><span class="toc-number">3.2.</span> <span class="toc-text">4_2 simple cp</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Unix System Programming -- (File IO Basic)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">HelloZhy Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-01T03:03:12.000Z" itemprop="datePublished">2021-05-01</time>
+        
+        (Updated: <time datetime="2021-05-01T03:49:41.185Z" itemprop="dateModified">2021-05-01</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="Basic-Operations"><a href="#Basic-Operations" class="headerlink" title="Basic Operations"></a>Basic Operations</h1><ul>
+<li><code>int open(const char* path, int oflag, ...);</code></li>
+<li><code>int openat(int fd, const char* path, int oflag, ...);</code></li>
+<li><code>int close(int fd);</code></li>
+<li><code>ssize_t read(int fd, void* buf, size_t nbyte);</code></li>
+<li><code>ssize_t write(int fd, const void* buf, size_t nbyte);</code></li>
+<li><code>off_t lseek(int fd, off_t offset, int whence);</code></li>
+<li><code>int ioctl(int fd, unsigned long request, ...);</code></li>
+</ul>
+<h1 id="Highlight-Points"><a href="#Highlight-Points" class="headerlink" title="Highlight Points"></a>Highlight Points</h1><ul>
+<li>文件空洞: lseek到文件末尾，并提供正向偏移，并写入数据，则文件尾到写入数据的数据头间存在的空隙为文件空洞。该段空间内read的值为0填充的缓冲区，不占用磁盘空间。</li>
+<li><code>O_CREAT | O_EXCL</code>: 以原子方式创建文件</li>
+<li><code>O_APPEND</code>: 以原子方式在文件尾追加内容</li>
+</ul>
+<h1 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h1><h2 id="4-1-simple-tee"><a href="#4-1-simple-tee" class="headerlink" title="4_1 simple tee"></a>4_1 simple tee</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_BUFFER 2048</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">2</span>) <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* file_name = argv[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> fd = open(argv[<span class="number">1</span>], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fd &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">"Open File Failed"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> buffer[MAX_BUFFER] = &#123;<span class="string">'\0'</span>&#125;;</span><br><span class="line">    <span class="keyword">ssize_t</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ((cnt = read(STDIN_FILENO, buffer, <span class="keyword">sizeof</span>(buffer))) &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cnt = write(fd, buffer, cnt);</span><br><span class="line">        <span class="keyword">if</span> (cnt &lt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            perror(<span class="string">"Error or no bytes writen into file."</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cnt = write(STDOUT_FILENO, buffer, cnt);</span><br><span class="line">        <span class="keyword">if</span> (cnt &lt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            perror(<span class="string">"Error or no bytes writen into stdout."</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">memset</span>(buffer, <span class="string">'\0'</span>, <span class="keyword">sizeof</span>(buffer));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    close(fd);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-simple-cp"><a href="#4-2-simple-cp" class="headerlink" title="4_2 simple cp"></a>4_2 simple cp</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_BUFFER 2048</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// --help, -h</span></span><br><span class="line">    <span class="keyword">if</span> (argc == <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[<span class="number">1</span>], <span class="string">"--help"</span>) == <span class="number">0</span> || <span class="built_in">strcmp</span>(argv[<span class="number">1</span>], <span class="string">"-h"</span>) == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"usage: &lt;cmd&gt; &lt;src&gt; &lt;dst&gt;\n"</span>);</span><br><span class="line">            <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// &lt;src&gt; &lt;dst&gt;</span></span><br><span class="line">    <span class="keyword">if</span> (argc != <span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        perror(<span class="string">"argurents not correct"</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"usage: &lt;cmd&gt; &lt;src&gt; &lt;dst&gt;\n"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* src_file_name = argv[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* dst_file_name = argv[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> src_fd = open(src_file_name, O_RDONLY);</span><br><span class="line">    <span class="keyword">int</span> dst_fd = open(dst_file_name, O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);</span><br><span class="line">    <span class="keyword">if</span> (src_fd &lt; <span class="number">0</span> || dst_fd &lt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (src_fd &gt;= <span class="number">0</span>) close(src_fd);</span><br><span class="line">        <span class="keyword">if</span> (dst_fd &gt;= <span class="number">0</span>) close(dst_fd);</span><br><span class="line">        perror(<span class="string">"open file failed"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">ssize_t</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> buffer[MAX_BUFFER] = &#123;<span class="string">'\0'</span>&#125;;</span><br><span class="line">    <span class="keyword">while</span> ((cnt = read(src_fd, buffer, <span class="keyword">sizeof</span>(buffer))) != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        write(dst_fd, buffer, cnt);</span><br><span class="line">        <span class="built_in">memset</span>(buffer, <span class="string">'\0'</span>, <span class="keyword">sizeof</span>(buffer));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    close(src_fd);</span><br><span class="line">    close(dst_fd);</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Basic-Operations"><span class="toc-number">1.</span> <span class="toc-text">Basic Operations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Highlight-Points"><span class="toc-number">2.</span> <span class="toc-text">Highlight Points</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Practice"><span class="toc-number">3.</span> <span class="toc-text">Practice</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-simple-tee"><span class="toc-number">3.1.</span> <span class="toc-text">4_1 simple tee</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-simple-cp"><span class="toc-number">3.2.</span> <span class="toc-text">4_2 simple cp</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&text=Unix System Programming -- (File IO Basic)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&is_video=false&description=Unix System Programming -- (File IO Basic)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Unix System Programming -- (File IO Basic)&body=Check out this article: http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&title=Unix System Programming -- (File IO Basic)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2021/05/01/Unix-System-Programming-File-IO-Basic/&name=Unix System Programming -- (File IO Basic)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 redfish
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="简易壁纸批量获取脚本一次偶然的机会，我摸到了一个虽然很小，但是有很多动漫壁纸资源的网站并mark了下来，成为了我电脑桌面的主要获取来源。所以，这次的爬虫的目标就是爬取这个网站选取页上的所有缩略图的原图。考虑到此次实现的内容还挺简单的，算是一个日常向的东西。-&amp;gt;壁纸来源&amp;lt;- 爬取思路考虑到爬取的内容为上文网站中的静态资源。因此，爬取的关键在于在网页源码中找到该类型资源在网站布局中的逻辑、">
+<meta name="keywords" content="日常向,憨憨爬虫,python,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WallpaperFetcher">
+<meta property="og:url" content="http://yoursite.com/2019/08/05/WallpaperFetcher/index.html">
+<meta property="og:site_name" content="HelloZhy Blog">
+<meta property="og:description" content="简易壁纸批量获取脚本一次偶然的机会，我摸到了一个虽然很小，但是有很多动漫壁纸资源的网站并mark了下来，成为了我电脑桌面的主要获取来源。所以，这次的爬虫的目标就是爬取这个网站选取页上的所有缩略图的原图。考虑到此次实现的内容还挺简单的，算是一个日常向的东西。-&amp;gt;壁纸来源&amp;lt;- 爬取思路考虑到爬取的内容为上文网站中的静态资源。因此，爬取的关键在于在网页源码中找到该类型资源在网站布局中的逻辑、">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/08/05/WallpaperFetcher/WallpaperFetcher_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/05/WallpaperFetcher/WallpaperFetcher_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/05/WallpaperFetcher/WallpaperFetcher_3.png">
+<meta property="og:updated_time" content="2021-05-01T03:05:47.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WallpaperFetcher">
+<meta name="twitter:description" content="简易壁纸批量获取脚本一次偶然的机会，我摸到了一个虽然很小，但是有很多动漫壁纸资源的网站并mark了下来，成为了我电脑桌面的主要获取来源。所以，这次的爬虫的目标就是爬取这个网站选取页上的所有缩略图的原图。考虑到此次实现的内容还挺简单的，算是一个日常向的东西。-&amp;gt;壁纸来源&amp;lt;- 爬取思路考虑到爬取的内容为上文网站中的静态资源。因此，爬取的关键在于在网页源码中找到该类型资源在网站布局中的逻辑、">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/05/WallpaperFetcher/WallpaperFetcher_1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>WallpaperFetcher</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/08/24/CPP获取成员函数指针/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/06/26/关于毕业设计-TDOA/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/08/05/WallpaperFetcher/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&text=WallpaperFetcher"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&is_video=false&description=WallpaperFetcher"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=WallpaperFetcher&body=Check out this article: http://yoursite.com/2019/08/05/WallpaperFetcher/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&name=WallpaperFetcher&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简易壁纸批量获取脚本"><span class="toc-number">1.</span> <span class="toc-text">简易壁纸批量获取脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#爬取思路"><span class="toc-number">2.</span> <span class="toc-text">爬取思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#壁纸页选择"><span class="toc-number">2.1.</span> <span class="toc-text">壁纸页选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面元素层级"><span class="toc-number">2.2.</span> <span class="toc-text">页面元素层级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        WallpaperFetcher
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">HelloZhy Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-05T11:43:34.000Z" itemprop="datePublished">2019-08-05</time>
+        
+        (Updated: <time datetime="2021-05-01T03:05:47.619Z" itemprop="dateModified">2021-05-01</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>, <a class="tag-link" href="/tags/多线程/">多线程</a>, <a class="tag-link" href="/tags/憨憨爬虫/">憨憨爬虫</a>, <a class="tag-link" href="/tags/日常向/">日常向</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="简易壁纸批量获取脚本"><a href="#简易壁纸批量获取脚本" class="headerlink" title="简易壁纸批量获取脚本"></a>简易壁纸批量获取脚本</h2><p>一次偶然的机会，我摸到了一个虽然很小，但是有很多动漫壁纸资源的网站并mark了下来，成为了我电脑桌面的主要获取来源。所以，这次的爬虫的目标就是爬取这个网站选取页上的所有缩略图的原图。考虑到此次实现的内容还挺简单的，算是一个日常向的东西。<a href="http://konachan.net/post" target="_blank" rel="noopener">-&gt;壁纸来源&lt;-</a></p>
+<h2 id="爬取思路"><a href="#爬取思路" class="headerlink" title="爬取思路"></a>爬取思路</h2><p>考虑到爬取的内容为上文网站中的静态资源。因此，爬取的关键在于在网页源码中找到该类型资源在网站布局中的逻辑、规律和所处的标签层级。<img src="/2019/08/05/WallpaperFetcher/WallpaperFetcher_1.png" alt="website_screenshot"></p>
+<h3 id="壁纸页选择"><a href="#壁纸页选择" class="headerlink" title="壁纸页选择"></a>壁纸页选择</h3><p>根据网页URL的特征<code>http://konachan.net/post?page=</code>，不难看出，只要在<code>page=</code>后面跟页码，即可完成页面跳转。</p>
+<h3 id="页面元素层级"><a href="#页面元素层级" class="headerlink" title="页面元素层级"></a>页面元素层级</h3><p><img src="/2019/08/05/WallpaperFetcher/WallpaperFetcher_2.png" alt="element_hierarchy_screenshot"><br>很明显可以看出壁纸展示区位于<code>&lt;ul id=&quot;post-list-posts&gt;...&lt;/ul&gt;</code>标签下。每一个缩略图对应一对<code>&lt;li&gt;&lt;/li&gt;</code>标签。<br>定位了要探索的主要内容的区域后。下一步，是从缩略图标签中提取出原图所对应的url，即超链接。<br><img src="/2019/08/05/WallpaperFetcher/WallpaperFetcher_3.png" alt="picture_url"><br>根据上述截图，可以看出，图中最下面的<code>&lt;a&gt;&lt;/a&gt;</code>标签中的url是我们需要的。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>为了节省时间（偷懒），选择Python3 + re + requests + bs4作为实现工具，考虑使用最不用脑子的方式————使用单线程和无界面的方式爬取文件。具体过程不做详细解释, 源码如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/local/bin/python3</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">' This is spider and batch script which is used for downloading</span></span><br><span class="line"><span class="string">' wallpapers from particular wallpaper website.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">from</span> bs4.element <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">DIR = <span class="string">'./picture/'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process</span><span class="params">(page, file_ctr)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> file_ctr == <span class="literal">None</span>:</span><br><span class="line">        file_ctr = <span class="number">1</span></span><br><span class="line">    <span class="comment"># load html src</span></span><br><span class="line">    html = requests.get(<span class="string">'http://konachan.net/post?page='</span> + str(page))</span><br><span class="line">    html.encoding = html.apparent_encoding</span><br><span class="line">    html_src = html.text</span><br><span class="line"></span><br><span class="line">    <span class="comment"># parse html element</span></span><br><span class="line">    soup = BeautifulSoup(html_src, <span class="string">'html.parser'</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> soup.find_all(<span class="string">"ul"</span>, id=<span class="string">"post-list-posts"</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> i.find_all(<span class="string">"li"</span>):</span><br><span class="line">            k = j.find(<span class="string">"a"</span>, class_=re.compile(<span class="string">"directlink \w*img"</span>))</span><br><span class="line">            <span class="keyword">if</span> k != <span class="literal">None</span>:</span><br><span class="line">                img_url = k[<span class="string">"href"</span>]</span><br><span class="line">                print(img_url)</span><br><span class="line">                suffix = re.search(<span class="string">"\.\w&#123;3,5&#125;$"</span>, img_url)</span><br><span class="line">                img_response = requests.get(img_url)</span><br><span class="line">                fd = open(DIR + str(file_ctr) + suffix.group(), <span class="string">'wb'</span>)</span><br><span class="line">                <span class="keyword">if</span> fd.writable():</span><br><span class="line">                    fd.write(img_response.content)</span><br><span class="line">                fd.close()</span><br><span class="line">                file_ctr = file_ctr + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># use cmdline parameters</span></span><br><span class="line">    num_of_params = len(sys.argv)</span><br><span class="line">    start = <span class="number">1</span></span><br><span class="line">    end = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> num_of_params == <span class="number">1</span>:</span><br><span class="line">        print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">elif</span> num_of_params == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">if</span> sys.argv[<span class="number">1</span>] == <span class="string">'-h'</span>:</span><br><span class="line">            print(<span class="string">"please use './main.py &lt;startpage&gt; &lt;endpage&gt;' cmd."</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">elif</span> num_of_params == <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            start = int(sys.argv[<span class="number">1</span>])</span><br><span class="line">            end = int(sys.argv[<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"wrong parameters, append '-h' for help"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">    ctr = <span class="number">0</span></span><br><span class="line">    <span class="comment"># count file number in picture directory</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(DIR):</span><br><span class="line">        ctr = ctr + <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start, end + <span class="number">1</span>):</span><br><span class="line">        process(i, ctr)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简易壁纸批量获取脚本"><span class="toc-number">1.</span> <span class="toc-text">简易壁纸批量获取脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#爬取思路"><span class="toc-number">2.</span> <span class="toc-text">爬取思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#壁纸页选择"><span class="toc-number">2.1.</span> <span class="toc-text">壁纸页选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面元素层级"><span class="toc-number">2.2.</span> <span class="toc-text">页面元素层级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/08/05/WallpaperFetcher/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&text=WallpaperFetcher"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&is_video=false&description=WallpaperFetcher"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=WallpaperFetcher&body=Check out this article: http://yoursite.com/2019/08/05/WallpaperFetcher/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&title=WallpaperFetcher"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/08/05/WallpaperFetcher/&name=WallpaperFetcher&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 redfish
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
